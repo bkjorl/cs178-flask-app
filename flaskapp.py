@@ -31,7 +31,26 @@ def add_user():
     else:
         # Render the form page if the request method is GET
         return render_template('add_user.html')
+    
+@app.route('/delete-user', methods=['GET', 'POST'])
+def delete_user():
+    if request.method == 'POST':
+        # Extract form data
+        name = request.form['name']
+        
+        # Process the data (e.g., add it to a database)
+        # For now, let's just print it to the console
+        print("Name:", name)
+        
+        flash('User deleted successfully! Yay!', 'warning') 
+        ## options include: success, error, warning, info
 
+        return redirect(url_for('home'))
+    else:
+        # Render the form page if the request method is GET
+        return render_template('delete_user.html')
+    
+@app.route('/add-user', methods=['GET', 'POST'])
 
 @app.route('/display-users')
 def display_users():
